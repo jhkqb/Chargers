@@ -16,12 +16,17 @@ solution: Set[Tuple] = set() #container for new locations
 
 def distance(a: Tuple[int], b: Tuple[int]) -> float:
   return sqrt((float(a[0]-b[0])**2) + (float(a[1]-b[1])**2))
-
-def avgdist(places1: Set[tuple], places2: Set[tuple]) -> float:
+  
+def closest(a: Tuple[int], b: Set[Tuple]) -> float:
+  dist: List[float] = []
+  for bi in b:
+    dist += [distance(a, bi)]
+  return min(dist)
+  
+def avgmindist(places1: Set[tuple], places2: Set[tuple]) -> float:
   dist: List[float] = []
   for place1 in places1: #Tuple from Set of Tuples
-    for place2 in places2: #Tuple from Set of Tuples
-      dist += [distance(place1, place2)]
+    dist += [closest(place1, places2)]
   return sum(dist)/len(dist)
 
 solution.add((1,2))
@@ -34,4 +39,12 @@ def test_distance():
   else:
     print("distance fails")
     
+def test_closest():
+  answer: float = closest((2,3),{(3,4),(5,5),(4,6)})
+  if answer - 1.4 < 0.1:
+    print("closest passes")
+  else:
+    print("closest fails")
+    
 test_distance()
+test_closest()
