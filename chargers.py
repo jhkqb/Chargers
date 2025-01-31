@@ -1,10 +1,11 @@
 # chargers.py
 
 # import numpy as np
+# from numpy.typing import NDArray
 # import dimod
+
 from math import sqrt
 from typing import Tuple, Set, List
-# from numpy.typing import NDArray
 
 width: int = 256
 height: int = 256
@@ -16,8 +17,14 @@ solution: Set[Tuple] = set() #container for new locations
 def distance(a: Tuple[int], b: Tuple[int]) -> float:
   return sqrt((float(a[0]-b[0])**2) + (float(a[1]-b[1])**2))
 
-solution.add((1,2))
+def avgdist(places1: Set[tuple], places2: Set[tuple]) -> float:
+  dist: List[float] = []
+  for place1 in places1: #Tuple from Set of Tuples
+    for place2 in places2: #Tuple from Set of Tuples
+      dist += [distance(place1, place2)]
+  return sum(dist)/len(dist)
 
+solution.add((1,2))
 print(solution)
 
 
