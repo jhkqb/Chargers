@@ -4,6 +4,7 @@
 # from numpy.typing import NDArray
 # import dimod
 
+from random import randint
 from math import sqrt
 from typing import Tuple, Set, List
 
@@ -24,6 +25,9 @@ def avgmindist(places1: Set[tuple], places2: Set[tuple]) -> float:
   for place1 in places1: #Tuple from Set of Tuples
     dist += [closest(place1, places2)]
   return sum(dist)/len(dist)
+  
+def guess(n: int): -> int
+  randint(0, n-1)
 
 #initial conditions
 width: int = 32
@@ -33,6 +37,9 @@ numnew: int = 2 #number of new chargers
 
 #monte-carlo technique
 iterations: int = (width*height)**2
+
+
+
 
 #solution
 solution: Set[Tuple] = set() #container for new locations
