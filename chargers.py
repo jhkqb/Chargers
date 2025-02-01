@@ -7,31 +7,29 @@
 from math import sqrt
 from typing import Tuple, Set, List
 
-width: int = 256
-height: int = 256
-locs: Set[Tuple] = {(5, 5), (25, 10), (200, 75)} #existing locations
-#pois: Set[Tuple] = {(20, 200), (200, 200)} #existing points of interest
-numnew: int = 2 #number of new chargers
-solution: Set[Tuple] = set() #container for new locations
-
+#distance between two tuples, a bi-linear form
 def distance(a: Tuple[int], b: Tuple[int]) -> float:
   return sqrt((float(a[0]-b[0])**2) + (float(a[1]-b[1])**2))
   
+#minimum distance between a tuple and a set of tuples
 def closest(a: Tuple[int], b: Set[Tuple]) -> float:
   mindist: float = distance(a, b.pop()) #initial state
   for bi in b:
     mindist = min(mindist, distance(a, bi)) #update state
   return mindist
   
+#average of the minimum distance between two sets of tuples
 def avgmindist(places1: Set[tuple], places2: Set[tuple]) -> float:
   dist: List[float] = []
   for place1 in places1: #Tuple from Set of Tuples
     dist += [closest(place1, places2)]
   return sum(dist)/len(dist)
 
-
-
-
+width: int = 256
+height: int = 256
+pois: Set[Tuple] = {(5, 5), (25, 10), (200, 75)} #existing points of interest
+numnew: int = 2 #number of new chargers
+solution: Set[Tuple] = set() #container for new locations
 solution.add((1,2))
 print(solution)
 
