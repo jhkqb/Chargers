@@ -46,5 +46,13 @@ def test_closest():
   else:
     print("closest fails")
     
+def test_avgmindist():
+  answer: float = avgmindist({(2,3),(4,4)},{(3,4),(5,5),(4,6)})
+  if answer - 1.2 < 0.1:
+    print("avgmindist passes")
+  else:
+    print("avgmindist fails")
+    
 test_distance()
 test_closest()
+test_avgmindist()
