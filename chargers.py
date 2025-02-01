@@ -26,7 +26,7 @@ def avgmindist(places1: Set[tuple], places2: Set[tuple]) -> float:
     dist += [closest(place1, places2)]
   return sum(dist)/len(dist)
   
-def guess(n: int): -> int
+def guess(n: int) -> int:
   randint(0, n-1)
 
 #initial conditions
