@@ -25,10 +25,16 @@ def avgmindist(places1: Set[tuple], places2: Set[tuple]) -> float:
     dist += [closest(place1, places2)]
   return sum(dist)/len(dist)
 
-width: int = 256
-height: int = 256
-pois: Set[Tuple] = {(5, 5), (25, 10), (200, 75)} #existing points of interest
+#initial conditions
+width: int = 32
+height: int = 32
+pois: Set[Tuple] = {(5, 5), (25, 10), (20, 30)} #existing points of interest
 numnew: int = 2 #number of new chargers
+
+#monte-carlo technique
+iterations: int = (width*height)**2
+
+#solution
 solution: Set[Tuple] = set() #container for new locations
 solution.add((1,2))
 print(solution)
