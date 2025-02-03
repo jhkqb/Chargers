@@ -8,14 +8,19 @@ from random import randint
 from math import sqrt
 from typing import Tuple, Set, List
 
+#Globals (because Python does not allow proper encapsulation of mutable vars)
+pois: Set[Tuple] = set() #existing points of interest
+locs: Set[Tuple] = set() #state variable location of charging stations
+
 #distance between two tuples, a bi-linear form
 def distance(a: Tuple[int], b: Tuple[int]) -> float:
   return sqrt((float(a[0]-b[0])**2) + (float(a[1]-b[1])**2))
   
 #minimum distance between a tuple to a set of tuples
 def closest(a: Tuple[int], b: Set[Tuple]) -> float:
-  mindist: float = distance(a, b.pop()) #initial state
-  for bi in b:
+  copyb = b.copy()
+  mindist: float = distance(a, copyb.pop()) #initial state
+  for bi in copyb:
     mindist = min(mindist, distance(a, bi)) #update state
   return mindist
   
@@ -39,9 +44,8 @@ def addrandcs(cs: Set[Tuple], w: int, h: int) -> Set[Tuple]:
 #initial conditions
 width: int = 32
 height: int = 32
-pois: Set[Tuple] = {(5, 5), (25, 10), (20, 30)} #existing points of interest
 numnew: int = 2 #number of new chargers
-locs: Set[Tuple] = set() #state variable location of charging stations
+pois = {(5, 5), (25, 10), (20, 30)} #existing points of interest
 
 #monte-carlo technique
 iterations: int = (width*height)**2
@@ -54,7 +58,7 @@ print()
 print("Solution:")
 print(locs)
 print("avgmindist is")
-print(avgmindist(locs, pois))
+print(avgmindist(pois, locs))
 print()
 
 #function tests
