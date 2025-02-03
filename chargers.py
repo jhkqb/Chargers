@@ -26,20 +26,29 @@ def avgmindist(places1: Set[tuple], places2: Set[tuple]) -> float:
     dist += [closest(place1, places2)]
   return sum(dist)/len(dist)
   
+#random positive integer up to a maximum
 def guess(n: int) -> int:
-  randint(0, n-1)
+  return randint(0, n-1)
+  
+#update state by adding random location
+def addrandcs(cs: Set[Tuple], w: int, h: int) -> Set[Tuple]:
+  return cs.add((guess(w),guess(h)))
+
 
 #initial conditions
 width: int = 32
 height: int = 32
 pois: Set[Tuple] = {(5, 5), (25, 10), (20, 30)} #existing points of interest
 numnew: int = 2 #number of new chargers
+locs: Set[Tuple] = set() #state variable location of charging stations
+
 
 #monte-carlo technique
 iterations: int = (width*height)**2
 
 
 
+newcs = addrandcs(
 
 #solution
 solution: Set[Tuple] = set() #container for new locations
