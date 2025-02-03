@@ -12,7 +12,7 @@ from typing import Tuple, Set, List
 def distance(a: Tuple[int], b: Tuple[int]) -> float:
   return sqrt((float(a[0]-b[0])**2) + (float(a[1]-b[1])**2))
   
-#minimum distance between a tuple and a set of tuples
+#minimum distance between a tuple to a set of tuples
 def closest(a: Tuple[int], b: Set[Tuple]) -> float:
   mindist: float = distance(a, b.pop()) #initial state
   for bi in b:
@@ -45,12 +45,16 @@ locs: Set[Tuple] = set() #state variable location of charging stations
 
 #monte-carlo technique
 iterations: int = (width*height)**2
-locs = addrandcs(locs, width, height) #add a charging station updating state variable
+for i in range(numnew):
+  locs = addrandcs(locs, width, height) #add a chrging station updatng state
+
 
 #solution
 print()
 print("Solution:")
 print(locs)
+print("avgmindist is")
+print(avgmindist(locs, pois))
 print()
 
 #function tests
