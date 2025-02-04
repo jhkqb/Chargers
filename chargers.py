@@ -84,12 +84,21 @@ def test_avgmindist():
   else:
     print("avgmindist() fails")
   return 0
+  
+def test_guess():
+  g: int = guess(5)
+  a: bool = 0 <= g < 5
+  if a:
+    print("guess() passes")
+  else:
+    print("guess() fails")
+  return 0
     
 def test_addrandcs():
-  s = set()
-  ss = addrandcs(s,10,10)
-  sss = next(iter(ss))[0]
-  answer = 0 <= sss < 10
+  s: Set = set()
+  ss: Set = addrandcs(s,10,10)
+  sss: int = next(iter(ss))[0]
+  answer: bool = 0 <= sss < 10
   if answer == True:
     print("addrandcs() passes")
   else:
@@ -100,5 +109,6 @@ print("Function tests:")
 test_distance()
 test_closest()
 test_avgmindist()
+test_guess()
 test_addrandcs()
 print()
