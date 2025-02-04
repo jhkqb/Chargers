@@ -9,8 +9,8 @@ from math import sqrt
 from typing import Tuple, Set, List
 
 #Globals (because Python does not allow proper encapsulation of mutable vars)
-pois: Set[Tuple] = set() #existing points of interest
-locs: Set[Tuple] = set() #state variable location of charging stations
+_pois_: Set[Tuple] = set() #existing points of interest
+_locs_: Set[Set] = set() #state variable location of charging stations
 
 #distance between two tuples, a bi-linear form
 def distance(a: Tuple[int], b: Tuple[int]) -> float:
@@ -45,20 +45,29 @@ def addrandcs(cs: Set[Tuple], w: int, h: int) -> Set[Tuple]:
 width: int = 32
 height: int = 32
 numnew: int = 2 #number of new chargers
-pois = {(5, 5), (25, 10), (20, 30)} #existing points of interest
+_pois_ = {(5, 5), (3, 11), (10, 10), (20, 20), (10,30)} #existing points of interest
 
 #monte-carlo technique
-iterations: int = (width*height)**2
-for i in range(numnew):
-  locs = addrandcs(locs, width, height) #add a chrging station updatng state
-
+plays: int = 30
+iterations: int = 9999 # or better yet (width*height)**2
+mindist: float = sqrt((width**2)+(height**2)) #state variable
+_ttlocs_: Set[Tuple] = set()
+for k in range(plays):
+  for j in range(iterations):
+    _tlocs_ = set() #state variable
+    for i in range(numnew):
+      _tlocs_ = addrandcs(_tlocs_, width, height) #add a chrging station updatng state
+      d: float = avgmindist(_pois_, _tlocs_) #state variable
+      if d < mindist:
+         print(d) 
+         mindist = d #updating state
+         _ttlocs_ = _tlocs_ #updating state
+  _locs_ = _ttlocs_ #updateing state
 
 #solution
 print()
 print("Solution:")
-print(locs)
-print("avgmindist is")
-print(avgmindist(pois, locs))
+print(_locs_)
 print()
 
 #function tests
