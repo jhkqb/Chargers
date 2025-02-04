@@ -114,7 +114,7 @@ if True: # True if testing is desired False otherwise
     else:
       print("solve() fails")
     return 0
-   
+  print()
   print("Function tests:") 
   test_distance()
   test_closest()
@@ -122,7 +122,6 @@ if True: # True if testing is desired False otherwise
   test_guess()
   test_addrandcs()
   test_solve()
-  print()
 
 #monte-carlo technique
 width: int = 32
@@ -137,4 +136,3 @@ print()
 print("Solution:")
 print(_locs_)
 print()
-
