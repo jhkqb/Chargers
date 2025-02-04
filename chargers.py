@@ -53,21 +53,7 @@ def solve(pois, plays, iterations, width, height, numnew):
   # print(mindist) #used for checking under the hood
   return ttlocs
 
-#monte-carlo technique
-width: int = 32
-height: int = 32
-numnew: int = 1 #number of new chargers
-_pois_ = {(0, 0), (31, 31), (0, 31), (31, 0)} #existing points of interest
-_locs_: Set[Set] = set() #state variable location of charging stations
-plays: int = 30
-iterations: int = 9999
-_locs_ = solve(_pois_, plays, iterations, width, height, numnew) #updateing state
 
-#solution
-print()
-print("Solution:")
-print(_locs_)
-print()
 
 #function tests
 if True: # True if testing is desired False otherwise
@@ -127,7 +113,6 @@ if True: # True if testing is desired False otherwise
       print("solve() passes")
     else:
       print("solve() fails")
-
     return 0
    
   print("Function tests:") 
@@ -138,3 +123,18 @@ if True: # True if testing is desired False otherwise
   test_addrandcs()
   test_solve()
   print()
+
+#monte-carlo technique
+width: int = 32
+height: int = 32
+numnew: int = 1 #number of new chargers
+_pois_ = {(0, 0), (31, 31), (0, 31), (31, 0)} #existing points of interest
+_locs_: Set[Set] = set() #state variable location of charging stations
+plays: int = 30
+iterations: int = 999
+_locs_ = solve(_pois_, plays, iterations, width, height, numnew) #updateing state
+print()
+print("Solution:")
+print(_locs_)
+print()
+
