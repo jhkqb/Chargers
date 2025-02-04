@@ -1,14 +1,8 @@
 # chargers.py
 
-# import numpy as np
-# from numpy.typing import NDArray
-# import dimod
-
 from random import randint
 from math import sqrt
 from typing import Tuple, Set, List
-
-
 
 #distance between two tuples, a bi-linear form
 def distance(a: Tuple[int], b: Tuple[int]) -> float:
