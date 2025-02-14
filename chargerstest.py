@@ -1,16 +1,16 @@
 # chargerstest.py
 
-import chargers
+import chargers as ch
 
 def test_distance():
-  if distance((5, 5), (6, 6)) - 1.4 < 0.1:
+  if ch.distance((5, 5), (6, 6)) - 1.4 < 0.1:
     print("distance() passes")
   else:
     print("distance() fails")
   return 0
   
 def test_closest():
-  answer: float = closest((2,3),{(3,4),(5,5),(4,6)})
+  answer: float = ch.closest((2,3),{(3,4),(5,5),(4,6)})
   if answer - 1.4 < 0.1:
     print("closest() passes")
   else:
@@ -18,7 +18,7 @@ def test_closest():
   return 0
   
 def test_avgmindist():
-  answer: float = avgmindist({(2,3),(4,4)},{(3,4),(5,5),(4,6)})
+  answer: float = ch.avgmindist({(2,3),(4,4)},{(3,4),(5,5),(4,6)})
   if answer - 1.2 < 0.1:
     print("avgmindist() passes")
   else:
@@ -26,7 +26,7 @@ def test_avgmindist():
   return 0
   
 def test_guess():
-  g: int = guess(5)
+  g: int = ch.guess(5)
   a: bool = 0 <= g < 5
   if a:
     print("guess() passes")
@@ -36,7 +36,7 @@ def test_guess():
   
 def test_addrandcs():
   s: Set = set()
-  ss: Set = addrandcs(s,10,10)
+  ss: Set = ch.addrandcs(s,10,10)
   sss: int = next(iter(ss))[0]
   answer: bool = 0 <= sss < 10
   if answer == True:
@@ -52,7 +52,7 @@ def test_solve():
   pl: int = 20
   it: int = 999
   nn: int = 1
-  answer: Set[Tuple] = solve(p, pl, it, w, h, nn)
+  answer: Set[Tuple] = ch.solve(p, pl, it, w, h, nn)
   a: int = answer.pop()[0]
   if (a == 15) or (a == 16) or (a == 17):
     print("solve() passes")
