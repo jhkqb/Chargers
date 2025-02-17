@@ -1,5 +1,6 @@
 # chargers.py
 
+from sys import argv
 from random import randint
 from math import sqrt
 from typing import Tuple, Set, List
@@ -54,15 +55,16 @@ def solve(pois, plays, iterations, width, height, numnew):
   return ttlocs
 
 #monte-carlo technique
-width: int = 32
-height: int = 32
-numnew: int = 1 #number of new chargers
-_pois_ = {(0, 0), (31, 31), (0, 31), (31, 0)} #existing points of interest
-_locs_: Set[Set] = set() #state variable location of charging stations
-plays: int = 30
-iterations: int = 999
-_locs_ = solve(_pois_, plays, iterations, width, height, numnew) #updating state
-print()
-print("Solution:")
-print(_locs_)
-print()
+if (len(argv) > 1) and (argv[1] == "go"):
+  width: int = 32
+  height: int = 32
+  numnew: int = 1 #number of new chargers
+  _pois_ = {(0, 0), (31, 31), (0, 31), (31, 0)} #existing points of interest
+  _locs_: Set[Set] = set() #state variable location of charging stations
+  plays: int = 30
+  iterations: int = 999
+  _locs_ = solve(_pois_, plays, iterations, width, height, numnew) #updating state
+  print()
+  print("Solution:")
+  print(_locs_)
+  print()
